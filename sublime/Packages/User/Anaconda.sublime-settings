@@ -1,0 +1,17 @@
+{
+    "anaconda_linting": false,
+    /*
+        A list of pep8 error numbers to ignore.
+        The list of error codes is in this file: https://github.com/jcrocholl/pep8/blob/master/pep8.py.
+        Search for "Ennn:", where nnn is a 3-digit number.
+    */
+    "pep8_ignore":
+    [
+    "E501",
+    "W291",
+    "E251",
+    "E265"
+    ],
+    "complete_parameters": false,
+    "complete_all_parameters": false,
+}

@@ -1,0 +1,24 @@
+{
+    /*
+       Sets the mode in which SublimeCodeIntel runs:
+
+       true - Enabled (the default).
+       false - Disabled.
+    */
+    "codeintel": false,
+
+ 
+
+    /* ####################################################################### */
+    /* the following settings can be overridden for each language individually */
+    /* see "codeintel_language_settings" below!                                */
+    /* ####################################################################### */
+
+    /*
+       Sets the mode in which SublimeCodeIntel's live autocomplete runs:
+
+       true - Autocomplete popups as you type (the default).
+       false - Autocomplete popups only when you request it.
+    */
+    "codeintel_live": false,
+}
