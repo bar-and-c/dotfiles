@@ -11,17 +11,19 @@ dir=~/dotfiles
 olddir=~/dotfiles_old
 #files="bashrc gitignore_global gitconfig"    #files to symlink
 files="gitignore_global gitconfig"    #files to symlink
-sublimedir=~/apa/Library/Sublime\ Text\ 3/Packages/User
+sublimedir="$HOME/Library/Application Support/Sublime Text 3/Packages/User"
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
 echo "...done"
+echo
 
 # change to the dotfiles directory
 echo "Changing to the $dir directory"
 cd $dir
 echo "...done"
+echo
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
@@ -34,21 +36,22 @@ for file in $files; do
 done
 
 echo "...done"
+echo
 
 # Create symlink for Sublime Text User directory
-if [ -d $sublimedir ]; then	# check whether the directory already exists
-
-    if [ -L $sublimedir ]; then
+if [ -d "$sublimedir" ]; then	# check whether the directory already exists
+    echo "Sublime settings dir already exists, moving it"
+    if [ -L "$sublimedir" ]; then
         echo "Removing old symlink"
-        rm $sublimedir
+        rm "$sublimedir"
         echo "...done"
     else
         echo "Moving the existing Sublime Text Users directory from $sublimedir to $olddir"
-        mv $sublimedir $olddir
+        mv "$sublimedir" $olddir
         echo "...done"
     fi
 fi
 echo "Creating symlink to User in $sublimedir"
-ln -s $dir/sublime/Packages/User $sublimedir
+ln -s $dir/sublime/Packages/User "$sublimedir"
 echo "...done"
 
