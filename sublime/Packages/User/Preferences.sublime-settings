@@ -35,6 +35,7 @@
 	"font_size": 9,
 	"ignored_packages":
 	[
+		"Package Control",
 		"Vintage"
 	],
 	"rulers":
