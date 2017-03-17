@@ -1,0 +1,33 @@
+# Push to gerrit for review ("for" is Gerrit nomenclature): 
+git push gerrit HEAD:refs/for/master
+
+# Push directly to master (apparently git standard): 
+git push gerrit HEAD:refs/heads/master
+
+# Push things that Git thinks are no changes at all (so GitExtensions
+# fails to push with "unpack failed, missing tree"):
+git push --no-thin gerrit HEAD:refs/for/master
+
+# Copy file with history to another repo (cd to repo #1 first):
+git log --pretty=email --patch-with-stat --reverse -- path/to/file_or_folder | (cd /path/to/new_repository && git am)
+
+
+# Gerrit CLI skills
+ssh -p 29418  gerrit.agroup.dot.corp gerrit review --help
+
+ssh -p 29418  gerrit.agroup.dot.corp gerrit query --help
+
+ssh -p 29418  gerrit.agroup.dot.corp gerrit query topic:c40emu status:open --current-patch-set
+
+ssh -p 29418  gerrit.agroup.dot.corp gerrit query topic:c40emu status:open --current-patch-set | grep revision | awk '{print $2}'
+
+for i in `ssh -p 29418  gerrit.agroup.dot.corp gerrit query topic:c40emu status:open --current-patch-set | grep revision | awk '{print $2}'`; do ssh -p 29418  gerrit.agroup.dot.corp gerrit review --code-review +2 $i; done;
+
+for i in `ssh -p 29418  gerrit.agroup.dot.corp gerrit query topic:c40emu status:open --current-patch-set | grep revision | awk '{print $2}'`; do ssh -p 29418  gerrit.agroup.dot.corp gerrit review --verified +1 $i; done;
+
+
+# See:
+# https://review.openstack.org/Documentation/cmd-query.html
+# https://review.openstack.org/Documentation/cmd-review.html
+# https://review.openstack.org/Documentation/cmd-index.html
+# https://triple-networks.com/2012/05/01/gerrit-batch-abondon/
