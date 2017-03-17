@@ -11,7 +11,7 @@
                 "@disable": false,
                 "args": [],
                 "excludes": [],
-                "ignore": "E251,E501,E265,E262,E231,E203,E221",
+                "ignore": "E251,E501,E265,E203,E221,E261,W1202",
                 "max-line-length": null,
                 "select": ""
             },
@@ -23,7 +23,7 @@
             "pylint": {
                 "@disable": false,
                 "args": [],
-                "disable": "C0301,C0111,C0326,R0913,C0103",
+                "disable": "C0301,C0111,C0326,R0913,C0103,E261,W1202",
                 "enable": "",
                 "excludes": [],
                 "paths": [],
