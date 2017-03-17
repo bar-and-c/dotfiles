@@ -1,0 +1,5 @@
+{
+    "translate_tabs_to_spaces": true,
+    // Set to false to disable detection of tabs vs. spaces on load
+    "detect_indentation": true,
+}
