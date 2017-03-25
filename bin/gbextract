@@ -1,0 +1,106 @@
+#!/bin/sh
+
+usage ()
+{
+  echo " Arg 1: Path to where to unpack (default ./`basename $1`_aif) "
+  echo " Arg 2: Path to Garageband project to extract from"
+  echo " Arg 3: Copy option (-c (copy, default) or -h (hard link); "
+  echo "        soft links don't work) "
+  echo
+  echo " Future updates: Dont extract files already there (at least if  "
+  echo "                 they don't diff). "
+  echo
+  echo "                 Allow aif file(s), *.band, and 'any' directory "
+  echo "                 as input (simultaneously). Name out files after "
+  echo "                 the parent *.band base."
+}
+
+copycmd="cp"
+
+allinputfilesanddirs=""
+targetdir=""
+
+if [ $# -eq 0 ]
+then
+  usage
+  exit
+fi
+
+# parse argument list
+while [ $# -ge 1 ]
+do
+	case $1 in
+    	        -c)     copycmd="cp"; shift;;
+		-h)     copycmd="ln"; shift;;
+		 *)     if [ -z "$targetdir" ]; then targetdir=$1; else allinputfilesanddirs=`(echo ${allinputfilesanddirs}; echo ${1};)`; fi; shift;;
+	esac
+done
+
+#echo "   TEST: $copycmd"
+#echo "   TEST: $allinputfilesanddirs"
+
+
+copyfile()
+{
+#  echo "    TEST: copyfile $1"
+
+  srcfile=$1
+  filetype=`basename $srcfile | cut -f2 -d.`
+  garagebandproject=`dirname $srcfile`
+  garagebandproject=`dirname $garagebandproject`
+
+  if [ "`basename $garagebandproject | cut -f2 -d.`" = "band" ]
+  then
+    
+    garagebandproject=`basename $garagebandproject | cut -f1 -d.`
+#    echo "    TEST: GB project: $garagebandproject"
+    if [ "$filetype" = "aif" ]
+    then
+      destfilesuffix=`echo $srcfile |cut -f2 -d#`
+      destfileprefix=`basename $garagebandproject| cut -f1 -d.`
+      echo "$copycmd $srcfile ${targetdir}/${destfileprefix}_${destfilesuffix}"
+
+      # Do the copy:
+      $copycmd $srcfile ${targetdir}/${destfileprefix}_${destfilesuffix}
+
+    else
+      echo "File $srcfile not of type *.aif, skipping file"
+    fi
+  else
+    echo "Could not find GarageBand dir for $srcfile, skipping file"
+#    echo "  TEST: Found $garagebandproject"
+  fi
+}
+
+
+copydir()
+{
+  thedir=$1
+  thefiles=`find $thedir -name "*.aif"`
+  for thefile in $thefiles
+  do
+    copyfile $thefile
+  done
+}
+
+
+for file in $allinputfilesanddirs
+do
+#    echo "  TEST: Processing file $file"
+
+  if [ -d $file ]
+  then
+    gbdirs=`find $file -name "*.band"`
+#    echo "  TEST: Directory $file contains $gbdirs"
+
+    for gbdir in $gbdirs
+    do
+      copydir $gbdir
+    done
+  elif [ -r $file ]
+  then
+    copyfile $file
+  else
+    echo "The input $file is neither a GarageBand directory nor a readable file"
+  fi
+done
