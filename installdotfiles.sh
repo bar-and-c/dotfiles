@@ -12,6 +12,7 @@ olddir=~/dotfiles_old
 #files="bashrc gitignore_global gitconfig"    #files to symlink
 files="gitignore_global gitconfig"    #files to symlink
 sublimedir="$HOME/Library/Application Support/Sublime Text 3/Packages/User"
+bindir="$HOME/bin"
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
@@ -53,5 +54,22 @@ if [ -d "$sublimedir" ]; then	# check whether the directory already exists
 fi
 echo "Creating symlink to User in $sublimedir"
 ln -s $dir/sublime/Packages/User "$sublimedir"
+echo "...done"
+
+# Create symlink for bin directory
+if [ -d "$bindir" ]; then   # check whether the directory already exists
+    echo "bin dir already exists, moving it"
+    if [ -L "$bindir" ]; then
+        echo "Removing old symlink for bin dir"
+        rm "$bindir"
+        echo "...done"
+    else
+        echo "Moving the existing bin directory from $bindir to $olddir"
+        mv "$bindir" $olddir
+        echo "...done"
+    fi
+fi
+echo "Creating symlink to bin dir"
+ln -s $dir/bin "$bindir"
 echo "...done"
 
