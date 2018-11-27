@@ -30,7 +30,8 @@
 		"*.sublime-workspace",
 		".tags",
 		".tags_sorted_by_file",
-		"*.cmm"
+		"*.cmm",
+		"oe-*/"
 	],
 	"font_size": 9,
 	"ignored_packages":

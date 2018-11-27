@@ -7,9 +7,13 @@
 	[
 		"All Autocomplete",
 		"Anaconda",
+		"ARM Assembly",
 		"CTags",
+		"Git",
 		"Package Control",
+		"SqlBeautifier",
 		"SublimeLinter",
+		"SublimeLinter-contrib-sqlint",
 		"SublimeLinter-pep8",
 		"SublimeLinter-pyflakes",
 		"SublimeLinter-pylint",
