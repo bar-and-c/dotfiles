@@ -1,0 +1,19 @@
+// SublimeLinter Settings - User
+{
+    // Linter specific settings.
+    // More info: http://www.sublimelinter.com/en/stable/linter_settings.html
+    // Linter specific settings except for 'styles' can also be changed
+    // in sublime-project settings.
+    // What settings are available is documented in the readme of the
+    // specific linter plugin.
+    // Example:
+    "linters": {
+        // The name of the linter you installed
+        "bashate": {
+            // Disables the linter. The default here is 'not set'
+            "disable": false,
+            // Ignore "line too long" (E006)
+            "ignore": ["E006"],
+        }
+    },
+}
