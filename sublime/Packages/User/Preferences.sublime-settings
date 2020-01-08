@@ -33,7 +33,8 @@
 		"*.cmm",
 		"oe-*/"
 	],
-	"font_size": 9,
+	"find_selected_text": true,
+	"font_size": 11,
 	"ignored_packages":
 	[
 		"Vintage"
