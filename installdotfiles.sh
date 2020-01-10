@@ -10,7 +10,7 @@
 dir=~/dotfiles
 olddir=~/dotfiles_old
 #files="bashrc gitignore_global gitconfig"    #files to symlink
-files="gitignore_global gitconfig"    #files to symlink
+files="zshrc gitignore_global gitconfig"    #files to symlink
 sublimedir="$HOME/Library/Application Support/Sublime Text 3/Packages/User"
 bindir="$HOME/bin"
 
