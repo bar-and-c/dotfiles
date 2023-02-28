@@ -9,3 +9,4 @@ Package Control.system-ca-bundle
 Package Control.user-ca-bundle
 oscrypto-ca-bundle.crt
 
+.DS_Store
