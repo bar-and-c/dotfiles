@@ -1,5 +1,5 @@
 {
-    "anaconda_linting": false,
+    "anaconda_linting": true,
     /*
         A list of pep8 error numbers to ignore.
         The list of error codes is in this file: https://github.com/jcrocholl/pep8/blob/master/pep8.py.
@@ -9,11 +9,9 @@
     [
     "E501",
     "W291",
-    "E251",
-    "E265",
     "E261",
-    "W1202"
     ],
     "complete_parameters": false,
     "complete_all_parameters": false,
+    "python_interpreter": "python3",
 }
