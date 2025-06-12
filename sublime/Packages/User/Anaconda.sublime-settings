@@ -10,8 +10,10 @@
     "E501",
     "W291",
     "E261",
+    "C0301"
     ],
     "complete_parameters": false,
     "complete_all_parameters": false,
-    "python_interpreter": "python3",
+    "python_interpreter": "/usr/bin/python3",
+    "mypy": false,
 }

@@ -13,7 +13,13 @@
             // Disables the linter. The default here is 'not set'
             "disable": false,
             // Ignore "line too long" (E006)
-            "ignore": ["E006"],
+            "ignore": ["E006", "C0301"],
+        },
+        "pylint": {
+            // Disables the linter. The default here is 'not set'
+            "disable": true,
+            // Ignore "line too long" (E006)
+            "ignore": ["E006", "C0301"],
         }
     },
 }
