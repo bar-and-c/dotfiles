@@ -45,4 +45,5 @@
 		100
 	],
 	"update_check": false,
+	"index_files": true,
 }
